@@ -69,7 +69,7 @@ YOLO model was evaluated using mean average precision (mAP) metric, which is the
 # Trained models
 |File name|Description|Download|
 |---------|---------|----|
-|yolotrain1024.zip|Contains trained player detection model|[link](https://drive.google.com/file/d/12NslLN8Qvz8wG0kDPGKfn6FwMZDuLeJZ/view?usp=sharing)|
+|yolotrain1024.zip|Contains trained player detection model (0.98 mAP)|[link](https://drive.google.com/file/d/12NslLN8Qvz8wG0kDPGKfn6FwMZDuLeJZ/view?usp=sharing)|
 |FPN-mobilenet|FPN model with mobilenet backbone (0.87 IoU)|[link](https://drive.google.com/file/d/1ThBu25TCERNx_zUQ4KOSv-9azedPVmuu/view?usp=sharing)|
 |FPN-efficientnet|FPN model with efficientnet backbone (0.87 IoU)|[link](https://drive.google.com/file/d/11X6MZgO681BsnNQxOkEBTDM7ogB_iku8/view?usp=sharing)|
 |U-Net-resnet|U-Net model with resnet backbone (0.83 IoU)|[link](https://drive.google.com/file/d/1ANQ1W-F7AOf75olbhYe7NFXE1W3QoAMH/view?usp=sharing)|

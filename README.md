@@ -1,8 +1,11 @@
 # football-homography
 
 # Dataset
-Dataset consist of images (from 2014 World Cup) labeled with 29 selected keypoints.
-Dataset was split in 80:10:10 ratio (train (449 images) / validation (58 images) / test (58 images))
+Dataset consist of images (from 2014 World Cup) labeled with 29 selected keypoints and players bounding box coordinates.
+Dataset was split in 80:10:10 ratio:
+* train - 449 images
+* validation - 58 images
+* test - 58 images
 
 |File name|Description|Download|
 |---------|---------|----|
@@ -24,6 +27,12 @@ Input to the model is 320x320x3 image and the output is predicted masks for dete
 <p align="center">Left: Input image (320x320x3), Right: detected keypoints mask (320x320x30)</p>
 
 ## 2.Homography estimation
+
+In the field of computer vision, any two images of the same planar surface in space can be related by a 3×3 homography matrix H: X2 = HX1 where X1 and X2 are the homogeneous coordinates of two corresponding points in the two images. In order to compute our estimation of homography we need at least 8 points (4 in each image).
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/42214173/137024863-36089119-a5f0-4a79-b131-1b503583d33e.png" />
+</p>
 
 Knowing the classes and coordinates of each predicted keypoint, we can compute source and destination points from the image and the 2D view of the target image.
 
@@ -56,7 +65,12 @@ After assigning color to each player region, k-means with two clusters is used t
 # Evaluation metrics
 ## Segmentation model
 Intersection over Union (IoU) score is used to evaluate the segmentation model for predicting keypoints. The IoU is calculated between the predicted mask and the ground truth mask. 
-FPN model with efficientnet backbone achieved the highest IoU on the test set - <b>0.87</b>.
+
+![image](https://user-images.githubusercontent.com/42214173/137025069-3f17fd11-3623-4c7e-96bb-a071631d62e1.png)
+
+Three different backbones for U-Net encoders were used with resnet34 reporting the highest IoU value of <b>0.83</b>:
+
+![image](https://user-images.githubusercontent.com/42214173/137025251-6053ce5d-9c1d-49ab-9d52-63c2f9d29e97.png)
 
 ## Player detection model
 YOLO model was evaluated using mean average precision (mAP) metric, which is the most common metric for object detection and recognition. The model achieved <b>0.9886</b> mAP on test images with average IoU value between predicted and ground truth box of <b>0.84</b>.

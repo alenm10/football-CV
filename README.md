@@ -17,7 +17,10 @@ Dataset was split in 80:10:10 ratio:
 
 
 ## 1.Keypoints detection
-![image](https://user-images.githubusercontent.com/42214173/132948015-a3dd09b0-eea6-4e03-946d-30dc7bcb207d.png)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/42214173/132948015-a3dd09b0-eea6-4e03-946d-30dc7bcb207d.png" />
+</p>
 
 First task is to detect keypoints in a given image. The model is based on an pretrained encoder backbone with FPN architecture for predicting the mask of each visible keypoint. Model was trained for 100 epochs, batch size of 4 due to memory limits, learning rate of 0.0001, sum of dice and focal loss as loss functions and applied augmentations during training (horizontal flip, random contrast, random brightness and motion blur).
 
@@ -48,7 +51,9 @@ YOLOv5, fast and real-time single stage object detector, is used for player dete
 
 Model was trained on 449 training images to recognize class person for 50 epoch and batch size of 16. Since we have homography matrix from previous step, we can apply the matrix to transform player coordinates to 2D space.
 
-![image](https://user-images.githubusercontent.com/42214173/132947803-2969225d-cbc7-481f-8af5-3ce09c484a77.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/42214173/132947803-2969225d-cbc7-481f-8af5-3ce09c484a77.png" />
+</p>
 
 ## 4. Player clustering
 
@@ -60,17 +65,19 @@ Since we can assume that the most dominant color in each region will be green co
 
 After assigning color to each player region, k-means with two clusters is used to divide players based on its colors in two groups (teams).
 
-![image](https://user-images.githubusercontent.com/42214173/132947828-67fb8860-166e-4aa2-ba29-4f0aa1a7a3f1.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/42214173/132947828-67fb8860-166e-4aa2-ba29-4f0aa1a7a3f1.png" />
+</p>
 
 # Evaluation metrics
 ## Segmentation model
 Intersection over Union (IoU) score is used to evaluate the segmentation model for predicting keypoints. The IoU is calculated between the predicted mask and the ground truth mask. 
 
-![image](https://user-images.githubusercontent.com/42214173/137025069-3f17fd11-3623-4c7e-96bb-a071631d62e1.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/42214173/137025069-3f17fd11-3623-4c7e-96bb-a071631d62e1.png" />
+</p>
 
-Three different backbones for U-Net encoders were used with resnet34 reporting the highest IoU value of <b>0.83</b>:
-
-![image](https://user-images.githubusercontent.com/42214173/137025251-6053ce5d-9c1d-49ab-9d52-63c2f9d29e97.png)
+Three different backbones for FPN model encoders were used with efficientNet achieving the highest IoU value of <b>0.87</b>:
 
 ## Player detection model
 YOLO model was evaluated using mean average precision (mAP) metric, which is the most common metric for object detection and recognition. The model achieved <b>0.9886</b> mAP on test images with average IoU value between predicted and ground truth box of <b>0.84</b>.
